@@ -18,15 +18,19 @@ function draw(e) {
   if(!isDrawing){ return }
 
     ctx.beginPath();
-    ctx.moveTo(initX, initY);
+    // ctx.moveTo(initX, initY);
     ctx.lineTo(e.offsetX, e.offsetY);
-    ctx.strokeStyle = `hsl(${color}, 50%, 50%)`
+    ctx.strokeStyle = `hsl(${color}, 50%, 50%)`;
+    ctx.lineWidth = 50;
     ctx.stroke();
     color ++;
+    [lastX, lastY] = e.offsetX, e.offsetY;
 }
 
 
 canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('mousedown', () => { isDrawing = true })
+canvas.addEventListener('mousedown', (e) => {
+  isDrawing = true;
+})
 canvas.addEventListener('mouseup', () => { isDrawing = false })
 canvas.addEventListener('mouseout', () => { isDrawing = false })
